@@ -79,5 +79,8 @@ int main() {
             prev = c;
         }
     }
+    infile.close();
+    outfile.close();
+
     return 0;
 }
