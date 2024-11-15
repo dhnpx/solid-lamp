@@ -25,9 +25,15 @@ int main() {
         if (c == ')' && prev == ' ') {
             outfile.seekp((long)outfile.tellp() - 1);
             outfile.write(")", 1);
+            prev = c;
         } else if (c == ',' && prev == ' ') {
             outfile.seekp((long)outfile.tellp() - 1);
             outfile.write(",", 1);
+            prev = c;
+        } else if (c == ';' && prev == ' ') {
+            outfile.seekp((long)outfile.tellp() - 1);
+            outfile.write(";", 1);
+            prev = c;
         } else if (c == '\"') {
             outfile << c;
             prev = c;
@@ -36,32 +42,39 @@ int main() {
                 c = infile.get();
                 outfile << c;
             }
-        } else if ((c == ' ' || c == '\n') && prev == '\n') {
-            continue;
-        } else if (c == ' ' && prev == ' ') {
-            continue;
+        } else if (c == ' ') {
+            if (prev == ' ' || prev == '\n') {
+                continue;
+            } else {
+                prev = c;
+                outfile << c;
+            }
+        } else if (c == '\n') {
+            if (prev == '\n') {
+                continue;
+            } else {
+                line_no++;
+                outfile << c;
+                prev = c;
+            }
         } else if (c == '(') {
-            prev = c;
-            c = infile.get();
-            if (c == '*') {
-                while (!infile.eof() && (c != ')' && prev != '*')) {
-                    c = infile.get();
-                    prev = c;
+            char next = infile.get();
+            if (next == '*') {
+                while (!infile.eof() && (next != ')' && c != '*')) {
+                    next = infile.get();
+                    c = next;
                 }
                 infile.get();
-            } else if (c == ' ') {
-                outfile << prev;
+            } else if (next == ' ') {
+                outfile << c;
+                prev = c;
+                c = next;
             } else {
-                outfile << prev << c;
+                outfile << c << next;
+                prev = c;
+                c = next;
             }
-        } else if (c == '*' && prev == '(') {
         } else {
-            if (c == '\n') {
-                if (prev == '\n') {
-                    continue;
-                }
-                line_no++;
-            }
             outfile << c;
             prev = c;
         }
