@@ -22,19 +22,38 @@ int main() {
     int line_no = 1;
     while (!infile.eof()) {
         char c = infile.get();
-        if (c == ')' && prev == ' ') {
-            outfile.seekp((long)outfile.tellp() - 1);
-            outfile.write(")", 1);
-            prev = c;
-        } else if (c == ',' && prev == ' ') {
-            outfile.seekp((long)outfile.tellp() - 1);
-            outfile.write(",", 1);
-            prev = c;
-        } else if (c == ';' && prev == ' ') {
-            outfile.seekp((long)outfile.tellp() - 1);
-            outfile.write(";", 1);
-            prev = c;
-        } else if (c == '\"') {
+        switch (c) {
+        case ')':
+            if (prev == ' ') {
+                outfile.seekp((long)outfile.tellp() - 1);
+                outfile.write(")", 1);
+                prev = c;
+            } else {
+                outfile << c;
+                prev = c;
+            }
+            break;
+        case ',':
+            if (prev == ' ') {
+                outfile.seekp((long)outfile.tellp() - 1);
+                outfile.write(",", 1);
+                prev = c;
+            } else {
+                outfile << c;
+                prev = c;
+            }
+            break;
+        case ';':
+            if (prev == ' ') {
+                outfile.seekp((long)outfile.tellp() - 1);
+                outfile.write(";", 1);
+                prev = c;
+            } else {
+                outfile << c;
+                prev = c;
+            }
+            break;
+        case '\"':
             outfile << c;
             prev = c;
             c = '\0';
@@ -42,14 +61,16 @@ int main() {
                 c = infile.get();
                 outfile << c;
             }
-        } else if (c == ' ') {
+            break;
+        case ' ':
             if (prev == ' ' || prev == '\n') {
                 continue;
             } else {
                 prev = c;
                 outfile << c;
             }
-        } else if (c == '\n') {
+            break;
+        case '\n':
             if (prev == '\n') {
                 continue;
             } else {
@@ -57,7 +78,8 @@ int main() {
                 outfile << c;
                 prev = c;
             }
-        } else if (c == '(') {
+            break;
+        case '(': {
             char next = infile.get();
             if (next == '*') {
                 while (!infile.eof() && (next != ')' && c != '*')) {
@@ -74,9 +96,12 @@ int main() {
                 prev = c;
                 c = next;
             }
-        } else {
+            break;
+        }
+        default:
             outfile << c;
             prev = c;
+            break;
         }
     }
     infile.close();
