@@ -20,33 +20,12 @@ int main() {
 
     char prev = '\n';
     int line_no = 1;
-    while (!infile.eof()) {
-        char c = infile.get();
+    char c = infile.get();
+    while (infile.get(c)) {
         switch (c) {
-        case ')':
-            if (prev == ' ') {
-                outfile.seekp((long)outfile.tellp() - 1);
-                outfile.write(")", 1);
-                prev = c;
-            } else {
-                outfile << c;
-                prev = c;
-            }
-            break;
         case ',':
-            if (prev == ' ') {
-                outfile.seekp((long)outfile.tellp() - 1);
-                outfile.write(",", 1);
-                prev = c;
-            } else {
-                outfile << c;
-                prev = c;
-            }
-            break;
-        case ';':
-            if (prev == ' ') {
-                outfile.seekp((long)outfile.tellp() - 1);
-                outfile.write(";", 1);
+            if (prev != ' ') {
+                outfile << " " << c;
                 prev = c;
             } else {
                 outfile << c;
@@ -80,24 +59,30 @@ int main() {
             }
             break;
         case '(': {
-            char next = infile.get();
-            if (next == '*') {
-                while (!infile.eof() && (next != ')' && c != '*')) {
-                    next = infile.get();
-                    c = next;
-                }
+            if (infile.peek() == '*') {
                 infile.get();
-            } else if (next == ' ') {
+                while (infile.get(c)) {
+                    if (c == '*' && infile.peek() == ')') {
+                        infile.get();
+                        break;
+                    }
+                }
+            } else if (infile.peek() != ' ') {
+                outfile << " " << c;
+                prev = c;
+            } else {
                 outfile << c;
                 prev = c;
-                c = next;
-            } else {
-                outfile << c << next;
-                prev = c;
-                c = next;
             }
             break;
         }
+        case ';':
+            if (prev != ' ') {
+                outfile << " " << c;
+            } else {
+                outfile << c;
+            }
+            break;
         default:
             outfile << c;
             prev = c;
