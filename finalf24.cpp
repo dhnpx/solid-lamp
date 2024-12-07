@@ -8,7 +8,7 @@ int main()
 	c = 5 ;
 	cout << c << endl;
 	bba = a * ( b2a + 2 * c) ;
-	cout << “value=” << bba << endl;
+	cout << "value=" << bba << endl;
 	system ("pause");
 	return 0;
 system ("pause");

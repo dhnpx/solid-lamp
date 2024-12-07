@@ -90,7 +90,6 @@ int main() {
         case print:
             while (token != ";") {
                 in >> token;
-                cout << token << endl;
                 buf.push_back(token);
             }
             out << "cout << ";
