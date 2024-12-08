@@ -855,7 +855,7 @@ unordered_set<string> reservedWords = {"program", "var", "begin", "end", "intege
 unordered_set<char> identifiers = {';', ',', ':', '.', '(', ')'};
 unordered_map<string, bool> declaredVariables;
 
-vector<string> tokenize(ifstream $file)
+vector<string> tokenize(ifstream file)
 {
     vector<string> tokens; 
     string token;
@@ -868,17 +868,6 @@ vector<string> tokenize(ifstream $file)
     return tokens; 
 }
 
-bool grammerChecker(vector<string> tokens)
-{
-    while(tokens)
-    {
-        for(int i = 0; i < tokens.size(); i++)
-        {
-            switch(tokens)
-            
-        }
-    }
-}
 
 vector<string> split(string s, char delim) {
     vector<string> split_str;
