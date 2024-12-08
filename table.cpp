@@ -1,9 +1,5 @@
-#include <fstream>
-#include <iostream>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
-#include <vector>
 
 using namespace std;
 
@@ -616,80 +612,3 @@ unordered_map<string, unordered_map<string, string>> table = {
       {")", "blank"},       {"=", "blank"},       {":", "blank"},
       {";", "blank"},       {",", "blank"},       {"\"", "blank"},
       {"$", "blank"}}}};
-
-// All reserved words and identifiers
-unordered_set<string> reservedWords = {"program", "var",     "begin",
-                                       "end",     "integer", "print"};
-unordered_set<char> identifiers = {';', ',', ':', '.', '(', ')'};
-unordered_map<string, bool> declaredVariables;
-
-vector<string> tokenize(ifstream &file) {
-    vector<string> tokens;
-    string token;
-
-    while (file >> token) {
-        tokens.push_back(token);
-    }
-
-    return tokens;
-}
-
-vector<string> split(string s, char delim) {
-    vector<string> split_str;
-    string tmp;
-
-    for (int i = 0; i < s.length(); i++) {
-        if (s[i] != delim) {
-            tmp += s[i];
-        } else {
-            split_str.push_back(tmp);
-            tmp.clear();
-        }
-    }
-    split_str.push_back(tmp);
-    return split_str;
-};
-
-int main() {
-    ifstream file;
-    file.open("finalf24.txt");
-    if (file.fail()) {
-        cerr << "Error opening input file.";
-        exit(1);
-    }
-
-    int line_no = 1;
-    vector<string> tokens = tokenize(file);
-    vector<string> stack = {"<prog>"};
-
-    for (auto i : tokens) {
-        cout << i << endl;
-    }
-
-    for (int i = 0; i < tokens.size();) {
-        string read = tokens[i];
-        string top = stack.back();
-        stack.pop_back();
-
-        if (read == ";") {
-            line_no++;
-        }
-
-        vector<string> next = split(table[top][read], ' ');
-        if (next[0] == "lambda") {
-            continue;
-        }
-
-        for (int j = next.size() - 1; j >= 0; j--) {
-            stack.push_back(next[j]);
-        }
-
-        if (top == read) {
-            i++;
-            continue;
-        }
-        if (top == "end" && read == "end") {
-            cout << "Input is ACCEPTED";
-        }
-    }
-}
