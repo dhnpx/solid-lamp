@@ -898,10 +898,6 @@ int main()
     vector <string> tokens = tokenize(file);
     vector <string> stack = {"<prog>"};
 
-    if(grammerChecker(tokens))
-    {
-        cout << "Ready to compile\n";
-    }
 
     for (int i = 0; i < tokens.size();)) {
         string read = tokens[i];
