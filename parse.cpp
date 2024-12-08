@@ -4,9 +4,10 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#define printStack(s) \
-    cout << "Stack: "; \
-    for (auto& x : s) cout << x << " "; \
+#define printStack(s)                                                          \
+    cout << "Stack: ";                                                         \
+    for (auto &x : s)                                                          \
+        cout << x << " ";                                                      \
     cout << "\n";
 
 using namespace std;
@@ -666,37 +667,48 @@ int main() {
     int line_no = 1;
     vector<string> tokens = tokenize(file);
     vector<string> stack = {"<prog>"};
-    printStack(stack);
-
-    for (auto i : tokens) {
-        cout << i << endl;
-    }
+    vector<string> token;
 
     for (int i = 0; i < tokens.size();) {
         string read = tokens[i];
         string top = stack.back();
         stack.pop_back();
         printStack(stack);
+        cout << endl;
+        cout << "Read: " << read << endl;
+        cout << "Top: " << top << endl;
 
         if (read == ";") {
             line_no++;
         }
 
-        vector<string> next = split(table[top][read], ' ');
-        if (next[0] == "lambda") {
-            continue;
-        }
+        if (reservedWords.find(read) == reservedWords.end()) {
+            for (int i = 0; i < read.size(); i++) {
+                token.push_back(to_string(read[i]));
+            }
+            for (int i = 0; i < token.size(); i++) {
+                vector<string> next = split(table[top][token[i]], ' ');
+                if (next[0] == "blank") {
+                    cout << "Input is rejected" << endl;
+                    return 1;
+                }
+                if (next[0] == "lambda") {
+                    continue;
+                }
+                for (int j = next.size() - 1; j >= 0; j--) {
+                    stack.push_back(next[j]);
+                }
+                if (top == read) {
+                    i++;
+                    continue;
+                }
+            }
+            token.clear();
 
-        for (int j = next.size() - 1; j >= 0; j--) {
-            stack.push_back(next[j]);
-        }
-
-        if (top == read) {
-            i++;
-            continue;
-        }
-        if (top == "end" && read == "end") {
-            cout << "Input is ACCEPTED";
-        }
+        } else {
+            if (top == "end" && read == "end") {
+                cout << "Input is ACCEPTED";
+            }
+        };
     }
 }
