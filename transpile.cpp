@@ -71,9 +71,7 @@ int main() {
                 in.ignore();
                 buf.push_back(token);
             }
-            for (auto i : buf) {
-                cout << i << endl;
-            }
+
             if (buf[buf.size() - 2] == "integer") {
                 out << "int ";
             };

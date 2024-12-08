@@ -864,31 +864,9 @@ vector<string> tokenization(string file)
 
     while (tokenStream >> token)
     {
-        string tempToken;
-
-        for (int i = 0; i < token.size(); i++)
-        {
-            char tempChar = token[i];
-            if (identifiers.count(tempChar))
-            {
-                if(!tempToken.empty())
-                {
-                    tokens.push_back(tempToken);
-                    tempToken.clear();
-                }
-
-                tokens.push_back(string(1,tempChar));
-            }
-            else
-            {
-                tempToken += tempChar;
-            }
-        }
-        if (!tempToken.empty())
-        {
-            tokens.push_back(tempToken);
-        }
+        tokens.push_back(tempToken);
     }
+
     return tokens; 
 }
 
