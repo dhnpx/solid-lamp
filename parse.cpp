@@ -881,7 +881,7 @@ vector<string> tokenization(string file)
             }
             else
             {
-                tempToken += tempChar
+                tempToken += tempChar;
             }
         }
         if (!tempToken.empty())
