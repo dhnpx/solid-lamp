@@ -1,3 +1,10 @@
+//-------------------------------------------------------------------------------------------------------------
+// Group names: Haron Taher, HyungJoo Yoon, Caitlin Chau
+// Assignment: Final Project
+// Due date: 12/1/2024
+// Purpose: This is the preproccessor for our compiler project preprocessor 
+//-----------------------------------------------------------------------------------------------------------------
+
 #include <fstream>
 #include <iostream>
 
