@@ -686,8 +686,8 @@ int main() {
             for (int i = 0; i < read.size(); i++) {
                 token.push_back(to_string(read[i]));
             }
-            for (int i = 0; i < token.size(); i++) {
-                vector<string> next = split(table[top][token[i]], ' ');
+            for (int j = 0; j < token.size(); j++) {
+                vector<string> next = split(table[top][token[j]], ' ');
                 if (next[0] == "blank") {
                     cout << "Input is rejected" << endl;
                     return 1;
@@ -695,20 +695,26 @@ int main() {
                 if (next[0] == "lambda") {
                     continue;
                 }
-                for (int j = next.size() - 1; j >= 0; j--) {
-                    stack.push_back(next[j]);
+                for (int k = next.size() - 1; j >= 0; k--) {
+                    stack.push_back(next[k]);
                 }
                 if (top == read) {
-                    i++;
+                    j++;
                     continue;
                 }
             }
+            i++;
             token.clear();
 
         } else {
+            vector<string> next = split(table[top][read], ' ');
+            for (int j = next.size() - 1; j >= 0; j--) {
+                stack.push_back(next[j]);
+            }
             if (top == "end" && read == "end") {
                 cout << "Input is ACCEPTED";
             }
+            i++;
         };
     }
 }
