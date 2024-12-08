@@ -4,9 +4,14 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#define printStack(s) \
+    cout << "Stack: "; \
+    for (auto& x : s) cout << x << " "; \
+    cout << "\n";
 
 using namespace std;
 
+// Predictive parsing table
 unordered_map<string, unordered_map<string, string>> table = {
     {"<prog>",
      {{"program",
@@ -661,6 +666,7 @@ int main() {
     int line_no = 1;
     vector<string> tokens = tokenize(file);
     vector<string> stack = {"<prog>"};
+    printStack(stack);
 
     for (auto i : tokens) {
         cout << i << endl;
@@ -670,6 +676,7 @@ int main() {
         string read = tokens[i];
         string top = stack.back();
         stack.pop_back();
+        printStack(stack);
 
         if (read == ";") {
             line_no++;
