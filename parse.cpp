@@ -4,10 +4,9 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#define printStack(s)                                                          \
-    cout << "Stack: ";                                                         \
-    for (auto &x : s)                                                          \
-        cout << x << " ";                                                      \
+#define printStack(s) \
+    cout << "Stack: "; \
+    for (auto& x : s) cout << x << " "; \
     cout << "\n";
 
 using namespace std;
@@ -655,66 +654,93 @@ vector<string> split(string s, char delim) {
     split_str.push_back(tmp);
     return split_str;
 };
+bool isIdentifier(string &token) {
 
-int main() {
-    ifstream file;
-    file.open("finalf24.txt");
-    if (file.fail()) {
-        cerr << "Error opening input file.";
-        exit(1);
+    if (!isalpha(token[0]))
+        return false;
+
+    // Remaining characters must be letters or digits
+    for (int i = 1; i < token.length(); i++) {
+        if (!isalnum(token[i]))
+            return false;
     }
 
-    int line_no = 1;
+    return true;
+}
+
+int main() {
+
+  ifstream file;
+    file.open("finalf24.txt");
+    if (file.fail()) {
+        cerr << "Error opening input file." << endl;
+        return 1;
+    }
+
     vector<string> tokens = tokenize(file);
     vector<string> stack = {"<prog>"};
-    vector<string> token;
+    int i = 0;
 
-    for (int i = 0; i < tokens.size();) {
+    while (!stack.empty() && i < tokens.size()) {
         string read = tokens[i];
         string top = stack.back();
         stack.pop_back();
-        printStack(stack);
-        cout << endl;
-        cout << "Read: " << read << endl;
-        cout << "Top: " << top << endl;
 
-        if (read == ";") {
-            line_no++;
+        cout << "Read: " << read << ", Top: " << top << endl;
+        printStack(stack);
+
+        if (top == "<identifier>") {
+            if (isIdentifier(read)) {
+                i++;
+            } else {
+                // for debugging only i will delete this later 
+                cerr << "Syntax error: Invalid identifier '" << read << "'" << endl;
+                return 1;
+            }
+            continue;
         }
 
-        if (reservedWords.find(read) == reservedWords.end()) {
-            for (int i = 0; i < read.size(); i++) {
-                token.push_back(to_string(read[i]));
-            }
-            for (int j = 0; j < token.size(); j++) {
-                vector<string> next = split(table[top][token[j]], ' ');
-                if (next[0] == "blank") {
-                    cout << "Input is rejected" << endl;
-                    return 1;
-                }
-                if (next[0] == "lambda") {
-                    continue;
-                }
-                for (int k = next.size() - 1; j >= 0; k--) {
-                    stack.push_back(next[k]);
-                }
-                if (top == read) {
-                    j++;
-                    continue;
-                }
-            }
-            i++;
-            token.clear();
+        if (table.find(top) != table.end()) {
+            if (table[top].find(read) != table[top].end()) {
+                string production = table[top][read];
 
-        } else {
-            vector<string> next = split(table[top][read], ' ');
-            for (int j = next.size() - 1; j >= 0; j--) {
-                stack.push_back(next[j]);
+                // for debugging only i will delete this later 
+                cout << "Expanding production: " << production << endl;
+
+                if (production == "lambda") {
+                    continue;
+                }
+
+                vector<string> prodTokens = split(production, ' ');
+                for (auto g = prodTokens.rbegin(); g != prodTokens.rend();++g) {
+                    stack.push_back(*g);
+                }
+            } else {
+
+                cerr << "Syntax error: Unexpected token '" << read
+                     << "' for non-terminal '" << top << "'" << endl;
+                return 1;
             }
-            if (top == "end" && read == "end") {
-                cout << "Input is ACCEPTED";
-            }
-            i++;
-        };
+        } 
+        
+        else if (top == read) 
+        {
+            // for debugging only i will delete this later 
+            cout << "Matched terminal: " << read << endl;
+            i++;  
+        }
+        else {
+            cerr << "Syntax error: Expected '" << top << "', found '" << read << "'" << endl;
+            return 1;
+        }
     }
+
+
+    if (stack.empty() && i == tokens.size()) {
+        cout << "Input is ACCEPTED" << endl;
+    } else {
+        cout << "Input is REJECTED: stack or tokens remaining" << endl;
+    }
+
+    return 0;
 }
