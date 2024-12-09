@@ -477,18 +477,22 @@ Stack: end <stat-list'> ; ) <write'>
 Read: ", Top: <write'>
 Stack: end <stat-list'> ; ) <identifier> <str> 
 Read: ", Top: <str>
-Stack: end <stat-list'> ; ) <identifier> "value=" , 
-Read: ", Top: ,
-Stack: end <stat-list'> ; ) <identifier> "value="  
-Read: ", Top: 
-Stack: end <stat-list'> ; ) <identifier> "value="  
-Read: ", Top: 
-Stack: end <stat-list'> ; ) <identifier> "value="  
-Read: ", Top: 
-Stack: end <stat-list'> ; ) <identifier> "value="  
-Read: ", Top: 
-Stack: end <stat-list'> ; ) <identifier> "value="  
-Read: ", Top: 
-Stack: end <stat-list'> ; ) <identifier> "value="  
-Read: ", Top: 
+Stack: end <stat-list'> ; ) <identifier>  , " value= " 
+Read: ", Top: "
+Matched terminal: "
+Stack: end <stat-list'> ; ) <identifier>  , " value= 
+Read: value=, Top: value=
+Matched terminal: value=
+Stack: end <stat-list'> ; ) <identifier>  , " 
+Read: ", Top: "
+Matched terminal: "
+Stack: end <stat-list'> ; ) <identifier>  , 
+Read: ,, Top: ,
+Matched terminal: ,
+Stack: end <stat-list'> ; ) <identifier>  
+Read: b, Top: 
+Stack: end <stat-list'> ; ) <identifier>  
+Read: b, Top: 
+Stack: end <stat-list'> ; ) <identifier>  
+Read: b, Top: 
 
