@@ -769,10 +769,20 @@ int main() {
                 tmp.push_back(read[j]);
                 token_split.push_back(tmp);
             }
-            for (int j = 0; j < token_split.size(); j++) {
+            bool first = true;
+            for (int j = 0; j < token_split.size();) {
+                if (!first) {
+                    top = stack.back();
+                    stack.pop_back();
+                    first = false;
+                }
                 string prod = table[top][token_split[j]];
                 cout << "Prod: " << prod << " ";
                 cout << "Top: " << top << " Token: " << token_split[j] << endl;
+                if (top == token_split[j]) {
+                    j++;
+                    continue;
+                }
                 if (prod == "lambda") {
                     continue;
                 }
