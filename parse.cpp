@@ -779,7 +779,7 @@ int main() {
             stack.push_back(prod_split[j]);
             
         }
-    
+    }
 
     if (stack.empty() && i == tokens.size()) {
         cout << "Input is ACCEPTED" << endl;
