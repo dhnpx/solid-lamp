@@ -92,22 +92,22 @@ unordered_map<string, unordered_map<string, string>> table = {
       {"end", "blank"},
       {"integer", "blank"},
       {"print", "blank"},
-      {"a", "<letter> <identifier’>"},
-      {"b", "<letter> <identifier’>"},
-      {"c", "<letter> <identifier’>"},
-      {"d", "<letter> <identifier’>"},
-      {"l", "<letter> <identifier’>"},
-      {"f", "<letter> <identifier’>"},
-      {"0", "<digit> <identifier’>"},
-      {"1", "<digit> <identifier’>"},
-      {"2", "<digit> <identifier’>"},
-      {"3", "<digit> <identifier’>"},
-      {"4", "<digit> <identifier’>"},
-      {"5", "<digit> <identifier’>"},
-      {"6", "<digit> <identifier’>"},
-      {"7", "<digit> <identifier’>"},
-      {"8", "<digit> <identifier’>"},
-      {"9", "<digit> <identifier’>"},
+      {"a", "<letter> <identifier'>"},
+      {"b", "<letter> <identifier'>"},
+      {"c", "<letter> <identifier'>"},
+      {"d", "<letter> <identifier'>"},
+      {"l", "<letter> <identifier'>"},
+      {"f", "<letter> <identifier'>"},
+      {"0", "<digit> <identifier'>"},
+      {"1", "<digit> <identifier'>"},
+      {"2", "<digit> <identifier'>"},
+      {"3", "<digit> <identifier'>"},
+      {"4", "<digit> <identifier'>"},
+      {"5", "<digit> <identifier'>"},
+      {"6", "<digit> <identifier'>"},
+      {"7", "<digit> <identifier'>"},
+      {"8", "<digit> <identifier'>"},
+      {"9", "<digit> <identifier'>"},
       {"+", "lambda"},
       {"-", "lambda"},
       {"*", "lambda"},
@@ -205,7 +205,7 @@ unordered_map<string, unordered_map<string, string>> table = {
                 {"*", "blank"},       {"/", "blank"},
                 {"(", "blank"},       {")", "blank"},
                 {"=", "blank"},       {":", "lambda"},
-                {";", "blank"},       {",", ", <identifier> <dec’>"},
+                {";", "blank"},       {",", ", <identifier> <dec'>"},
                 {"\"", "blank"},      {"$", "blank"}}},
     {"<type>",
      {{"program", "blank"}, {"var", "blank"},       {"begin", "blank"},
@@ -438,8 +438,8 @@ unordered_map<string, unordered_map<string, string>> table = {
       {"7", "blank"},
       {"8", "blank"},
       {"9", "blank"},
-      {"+", "+ <term> <expr’>"},
-      {"-", "- <term> <expr’>"},
+      {"+", "+ <term> <expr'>"},
+      {"-", "- <term> <expr'>"},
       {"*", "blank"},
       {"/", "blank"},
       {"(", "blank"},
@@ -457,27 +457,27 @@ unordered_map<string, unordered_map<string, string>> table = {
       {"end", "blank"},
       {"integer", "blank"},
       {"print", "blank"},
-      {"a", "<factor> <term’>"},
-      {"b", "<factor> <term’>"},
-      {"c", "<factor> <term’>"},
-      {"d", "<factor> <term’>"},
-      {"l", "<factor> <term’>"},
-      {"f", "<factor> <term’>"},
-      {"0", "<factor> <term’>"},
-      {"1", "<factor> <term’>"},
-      {"2", "<factor> <term’>"},
-      {"3", "<factor> <term’>"},
-      {"4", "<factor> <term’>"},
-      {"5", "<factor> <term’>"},
-      {"6", "<factor> <term’>"},
-      {"7", "<factor> <term’>"},
-      {"8", "<factor> <term’>"},
-      {"9", "<factor> <term’>"},
-      {"+", "<factor> <term’>"},
-      {"-", "<factor> <term’>"},
+      {"a", "<factor> <term'>"},
+      {"b", "<factor> <term'>"},
+      {"c", "<factor> <term'>"},
+      {"d", "<factor> <term'>"},
+      {"l", "<factor> <term'>"},
+      {"f", "<factor> <term'>"},
+      {"0", "<factor> <term'>"},
+      {"1", "<factor> <term'>"},
+      {"2", "<factor> <term'>"},
+      {"3", "<factor> <term'>"},
+      {"4", "<factor> <term'>"},
+      {"5", "<factor> <term'>"},
+      {"6", "<factor> <term'>"},
+      {"7", "<factor> <term'>"},
+      {"8", "<factor> <term'>"},
+      {"9", "<factor> <term'>"},
+      {"+", "<factor> <term'>"},
+      {"-", "<factor> <term'>"},
       {"*", "blank"},
       {"/", "blank"},
-      {"(", "<factor> <term’>"},
+      {"(", "<factor> <term'>"},
       {")", "lambda"},
       {"=", "blank"},
       {":", "blank"},
@@ -581,16 +581,16 @@ unordered_map<string, unordered_map<string, string>> table = {
       {"d", "blank"},
       {"l", "blank"},
       {"f", "blank"},
-      {"0", "<digit> <number’>"},
-      {"1", "<digit> <number’>"},
-      {"2", "<digit> <number’>"},
-      {"3", "<digit> <number’>"},
-      {"4", "<digit> <number’>"},
-      {"5", "<digit> <number’>"},
-      {"6", "<digit> <number’>"},
-      {"7", "<digit> <number’>"},
-      {"8", "<digit> <number’>"},
-      {"9", "<digit> <number’>"},
+      {"0", "<digit> <number'>"},
+      {"1", "<digit> <number'>"},
+      {"2", "<digit> <number'>"},
+      {"3", "<digit> <number'>"},
+      {"4", "<digit> <number'>"},
+      {"5", "<digit> <number'>"},
+      {"6", "<digit> <number'>"},
+      {"7", "<digit> <number'>"},
+      {"8", "<digit> <number'>"},
+      {"9", "<digit> <number'>"},
       {"+", "lambda"},
       {"-", "lambda"},
       {"*", "lambda"},
@@ -764,22 +764,20 @@ int main() {
             i++;
             continue;
         }
+    
+        string prod = table[top][read];
         
-            string prod = table[top][read];
-            if (prod == "lambda") {
-                continue;
-            }
-            if (prod == "lambda") {
-                    continue;
-                }
-                if (prod == "blank") {
-                    cout << "Rejected" << endl;
-                    exit(1);
-                }
-            vector<string> prod_split = split(prod, ' ');
-            for (int j = prod_split.size() - 1; j >= 0; j--) {
-                stack.push_back(prod_split[j]);
-            }
+        if (prod == "lambda") {
+            continue;
+        }
+        if (prod == "blank") {
+            cout << "Rejected" << endl;
+            exit(1);
+        }
+        vector<string> prod_split = split(prod, ' ');
+        for (int j = prod_split.size() - 1; j >= 0; j--) {
+            stack.push_back(prod_split[j]);
+            
         }
     
 
