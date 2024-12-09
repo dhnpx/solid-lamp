@@ -729,7 +729,7 @@ int main() {
                 continue;
             }
             vector<string> prod_split = split(prod, ' ');
-            for (int j = prod_split.size() - 1; j >= 0; j++) {
+            for (int j = prod_split.size() - 1; j >= 0; j--) {
                 stack.push_back(prod_split[j]);
             }
         } else {
@@ -737,12 +737,12 @@ int main() {
             for (int j = 0; j < read.size(); j++) {
                 token_split.push_back(read[j]);
             }
-            for (int j = 0; j < token_split.size(); j++) {
+            for (int j = 0; j < token_split.size(); j--) {
                 string prod = table[top][token_split[j]];
                 if (prod == "lambda") {
                     continue;
                 }
-                vector<string> prod_split = split(prod, '' ');
+                vector<string> prod_split = split(prod, ' ');
                 for (int j = prod_split.size() - 1; j >= 0; j++) {
                     stack.push_back(prod_split[j]);
                 }
