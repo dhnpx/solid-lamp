@@ -659,7 +659,7 @@ vector<string> tokenize(ifstream &file) {
             for (auto c : token) {
                 string tmp;
                 tmp += c;
-                token.push_back(tmp);
+                tokens.push_back(tmp);
             }
         }
 
