@@ -728,7 +728,7 @@ int main() {
             if (prod == "lambda") {
                 continue;
             }
-            vector<string> prod_split = split(prod, " ");
+            vector<string> prod_split = split(prod, ' ');
             for (int j = prod_split.size() - 1; j >= 0; j++) {
                 stack.push_back(prod_split[j]);
             }
@@ -748,6 +748,10 @@ int main() {
                 }
             }
         }
+
+        if (top == "end" && read == "end") {
+            cout << "Input is ACCEPTED" << endl;
+        }
         
         if (top == read) 
         {
@@ -761,9 +765,7 @@ int main() {
         }
     }
 
-    if (top == "end" && read == "end") {
-        cout << "Input is ACCEPTED" << endl;
-    }
+
     if (stack.empty() && i == tokens.size()) {
         cout << "Input is ACCEPTED" << endl;
     } else {
