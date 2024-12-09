@@ -645,7 +645,7 @@ unordered_map<string, unordered_map<string, string>> table = {
 unordered_set<string> reservedWords = {"program", "var",     "begin",
                                        "end",     "integer", "print"};
 unordered_set<string> string_pool = {
-    "value="
+    "\"value=\","
 };
 
 unordered_set<char> identifiers = {';', ',', ':', '.', '(', ')'};
