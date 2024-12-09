@@ -710,6 +710,7 @@ int main() {
     vector<string> stack = {"<prog>"};
     int i = 0;
 
+
     while (!stack.empty() && i < tokens.size()) {
         printStack(stack);
         string read = tokens[i];
