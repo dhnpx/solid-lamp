@@ -701,12 +701,12 @@ int main() {
     int i = 0;
 
     while (!stack.empty() && i < tokens.size()) {
+        printStack(stack);
         string read = tokens[i];
         string top = stack.back();
         stack.pop_back();
 
         cout << "Read: " << read << ", Top: " << top << endl;
-        printStack(stack);
 
         /* if (top == "<identifier>") {
             if (isIdentifier(read)) {
