@@ -483,6 +483,3 @@ Stack: end <stat-list'> ; ) <identifier> ,
 Read: ", Top: 
 Stack: end <stat-list'> ; ) <identifier> ,  
 Read: ", Top: 
-Stack: end <stat-list'> ; ) <identifier> ,  
-Read: ", Top: 
-Stack: end <stat-list'> ; ) <identifier> ,  
