@@ -477,8 +477,18 @@ Stack: end <stat-list'> ; ) <write'>
 Read: ", Top: <write'>
 Stack: end <stat-list'> ; ) <identifier> <str> 
 Read: ", Top: <str>
-Stack: end <stat-list'> ; ) <identifier> "value=", 
-Read: ", Top: "value=",
-Stack: end <stat-list'> ; ) <identifier>  
+Stack: end <stat-list'> ; ) <identifier> "value=" , 
+Read: ", Top: ,
+Stack: end <stat-list'> ; ) <identifier> "value="  
 Read: ", Top: 
-Stack: end <stat-list'> ; ) <identifier>  
+Stack: end <stat-list'> ; ) <identifier> "value="  
+Read: ", Top: 
+Stack: end <stat-list'> ; ) <identifier> "value="  
+Read: ", Top: 
+Stack: end <stat-list'> ; ) <identifier> "value="  
+Read: ", Top: 
+Stack: end <stat-list'> ; ) <identifier> "value="  
+Read: ", Top: 
+Stack: end <stat-list'> ; ) <identifier> "value="  
+Read: ", Top: 
+
