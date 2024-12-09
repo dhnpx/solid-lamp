@@ -304,7 +304,7 @@ unordered_map<string, unordered_map<string, string>> table = {
       {"$", "blank"}}},
     {"<write>", {{"program", "blank"}, {"var", "blank"},
                  {"begin", "blank"},   {"end", "blank"},
-                 {"integer", "blank"}, {"print", "print ( <write'> )"},
+                 {"integer", "blank"}, {"print", "print ( <write'> ) ;"},
                  {"a", "blank"},       {"b", "blank"},
                  {"c", "blank"},       {"d", "blank"},
                  {"l", "blank"},       {"f", "blank"},

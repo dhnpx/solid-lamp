@@ -1,42 +1,325 @@
-Stack: <prog> 
+Stack: <prog>
 Read: program, Top: <prog>
-Prod: program <identifier> ; var <dec-list> begin <stat-list> end
-Stack: end <stat-list> begin <dec-list> var ; <identifier> program 
+Stack: end <stat-list> begin <dec-list> var ; <identifier> program
 Read: program, Top: program
 Matched terminal: program
-Stack: end <stat-list> begin <dec-list> var ; <identifier> 
+Stack: end <stat-list> begin <dec-list> var ; <identifier>
 Read: f, Top: <identifier>
-Prod: <letter> <identifier'>
-Stack: end <stat-list> begin <dec-list> var ; <identifier'> <letter> 
+Stack: end <stat-list> begin <dec-list> var ; <identifier'> <letter>
 Read: f, Top: <letter>
-Prod: f
-Stack: end <stat-list> begin <dec-list> var ; <identifier'> f 
+Stack: end <stat-list> begin <dec-list> var ; <identifier'> f
 Read: f, Top: f
 Matched terminal: f
-Stack: end <stat-list> begin <dec-list> var ; <identifier'> 
+Stack: end <stat-list> begin <dec-list> var ; <identifier'>
 Read: 2, Top: <identifier'>
-Prod: <digit> <identifier’>
-Stack: end <stat-list> begin <dec-list> var ; <identifier’> <digit> 
+Stack: end <stat-list> begin <dec-list> var ; <identifier'> <digit>
 Read: 2, Top: <digit>
-Prod: 2
-Stack: end <stat-list> begin <dec-list> var ; <identifier’> 2 
+Stack: end <stat-list> begin <dec-list> var ; <identifier'> 2
 Read: 2, Top: 2
 Matched terminal: 2
-Stack: end <stat-list> begin <dec-list> var ; <identifier’> 
-Read: 0, Top: <identifier’>
-Prod: 
-Stack: end <stat-list> begin <dec-list> var ;  
-Read: 0, Top: 
-Prod: 
-Stack: end <stat-list> begin <dec-list> var ;  
-Read: 0, Top: 
-Prod: 
-Stack: end <stat-list> begin <dec-list> var ;  
-Read: 0, Top: 
-Prod: 
-Stack: end <stat-list> begin <dec-list> var ;  
-Read: 0, Top: 
-Prod: 
-Stack: end <stat-list> begin <dec-list> var ;  
-Read: 0, Top: 
-Prod: 
+Stack: end <stat-list> begin <dec-list> var ; <identifier'>
+Read: 0, Top: <identifier'>
+Stack: end <stat-list> begin <dec-list> var ; <identifier'> <digit>
+Read: 0, Top: <digit>
+Stack: end <stat-list> begin <dec-list> var ; <identifier'> 0
+Read: 0, Top: 0
+Matched terminal: 0
+Stack: end <stat-list> begin <dec-list> var ; <identifier'>
+Read: 2, Top: <identifier'>
+Stack: end <stat-list> begin <dec-list> var ; <identifier'> <digit>
+Read: 2, Top: <digit>
+Stack: end <stat-list> begin <dec-list> var ; <identifier'> 2
+Read: 2, Top: 2
+Matched terminal: 2
+Stack: end <stat-list> begin <dec-list> var ; <identifier'>
+Read: 4, Top: <identifier'>
+Stack: end <stat-list> begin <dec-list> var ; <identifier'> <digit>
+Read: 4, Top: <digit>
+Stack: end <stat-list> begin <dec-list> var ; <identifier'> 4
+Read: 4, Top: 4
+Matched terminal: 4
+Stack: end <stat-list> begin <dec-list> var ; <identifier'>
+Read: ;, Top: <identifier'>
+Stack: end <stat-list> begin <dec-list> var ;
+Read: ;, Top: ;
+Matched terminal: ;
+Stack: end <stat-list> begin <dec-list> var
+Read: var, Top: var
+Matched terminal: var
+Stack: end <stat-list> begin <dec-list>
+Read: a, Top: <dec-list>
+Stack: end <stat-list> begin ; <type> : <dec>
+Read: a, Top: <dec>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier>
+Read: a, Top: <identifier>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> <letter>
+Read: a, Top: <letter>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> a
+Read: a, Top: a
+Matched terminal: a
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'>
+Read: ,, Top: <identifier'>
+Stack: end <stat-list> begin ; <type> : <dec'>
+Read: ,, Top: <dec'>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier> ,
+Read: ,, Top: ,
+Matched terminal: ,
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier>
+Read: b, Top: <identifier>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> <letter>
+Read: b, Top: <letter>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> b
+Read: b, Top: b
+Matched terminal: b
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'>
+Read: 2, Top: <identifier'>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> <digit>
+Read: 2, Top: <digit>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> 2
+Read: 2, Top: 2
+Matched terminal: 2
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'>
+Read: a, Top: <identifier'>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> <letter>
+Read: a, Top: <letter>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> a
+Read: a, Top: a
+Matched terminal: a
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'>
+Read: ,, Top: <identifier'>
+Stack: end <stat-list> begin ; <type> : <dec'>
+Read: ,, Top: <dec'>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier> ,
+Read: ,, Top: ,
+Matched terminal: ,
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier>
+Read: c, Top: <identifier>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> <letter>
+Read: c, Top: <letter>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> c
+Read: c, Top: c
+Matched terminal: c
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'>
+Read: ,, Top: <identifier'>
+Stack: end <stat-list> begin ; <type> : <dec'>
+Read: ,, Top: <dec'>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier> ,
+Read: ,, Top: ,
+Matched terminal: ,
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier>
+Read: b, Top: <identifier>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> <letter>
+Read: b, Top: <letter>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> b
+Read: b, Top: b
+Matched terminal: b
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'>
+Read: b, Top: <identifier'>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> <letter>
+Read: b, Top: <letter>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> b
+Read: b, Top: b
+Matched terminal: b
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'>
+Read: a, Top: <identifier'>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> <letter>
+Read: a, Top: <letter>
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'> a
+Read: a, Top: a
+Matched terminal: a
+Stack: end <stat-list> begin ; <type> : <dec'> <identifier'>
+Read: :, Top: <identifier'>
+Stack: end <stat-list> begin ; <type> : <dec'>
+Read: :, Top: <dec'>
+Stack: end <stat-list> begin ; <type> :
+Read: :, Top: :
+Matched terminal: :
+Stack: end <stat-list> begin ; <type>
+Read: integer, Top: <type>
+Stack: end <stat-list> begin ; integer
+Read: integer, Top: integer
+Matched terminal: integer
+Stack: end <stat-list> begin ;
+Read: ;, Top: ;
+Matched terminal: ;
+Stack: end <stat-list> begin
+Read: begin, Top: begin
+Matched terminal: begin
+Stack: end <stat-list>
+Read: a, Top: <stat-list>
+Stack: end <stat-list'> <stat>
+Read: a, Top: <stat>
+Stack: end <stat-list'> <assign>
+Read: a, Top: <assign>
+Stack: end <stat-list'> ; <expr> = <identifier>
+Read: a, Top: <identifier>
+Stack: end <stat-list'> ; <expr> = <identifier'> <letter>
+Read: a, Top: <letter>
+Stack: end <stat-list'> ; <expr> = <identifier'> a
+Read: a, Top: a
+Matched terminal: a
+Stack: end <stat-list'> ; <expr> = <identifier'>
+Read: =, Top: <identifier'>
+Stack: end <stat-list'> ; <expr> =
+Read: =, Top: =
+Matched terminal: =
+Stack: end <stat-list'> ; <expr>
+Read: 3, Top: <expr>
+Stack: end <stat-list'> ; <expr'> <term>
+Read: 3, Top: <term>
+Stack: end <stat-list'> ; <expr'> <term'> <factor>
+Read: 3, Top: <factor>
+Stack: end <stat-list'> ; <expr'> <term'> <number>
+Read: 3, Top: <number>
+Stack: end <stat-list'> ; <expr'> <term'> <number'> <digit> <sign>
+Read: 3, Top: <sign>
+Stack: end <stat-list'> ; <expr'> <term'> <number'> <digit>
+Read: 3, Top: <digit>
+Stack: end <stat-list'> ; <expr'> <term'> <number'> 3
+Read: 3, Top: 3
+Matched terminal: 3
+Stack: end <stat-list'> ; <expr'> <term'> <number'>
+Read: ;, Top: <number'>
+Stack: end <stat-list'> ; <expr'> <term'>
+Read: ;, Top: <term'>
+Stack: end <stat-list'> ; <expr'>
+Read: ;, Top: <expr'>
+Stack: end <stat-list'> ;
+Read: ;, Top: ;
+Matched terminal: ;
+Stack: end <stat-list'>
+Read: b, Top: <stat-list'>
+Stack: end <stat-list'> <stat>
+Read: b, Top: <stat>
+Stack: end <stat-list'> <assign>
+Read: b, Top: <assign>
+Stack: end <stat-list'> ; <expr> = <identifier>
+Read: b, Top: <identifier>
+Stack: end <stat-list'> ; <expr> = <identifier'> <letter>
+Read: b, Top: <letter>
+Stack: end <stat-list'> ; <expr> = <identifier'> b
+Read: b, Top: b
+Matched terminal: b
+Stack: end <stat-list'> ; <expr> = <identifier'>
+Read: 2, Top: <identifier'>
+Stack: end <stat-list'> ; <expr> = <identifier'> <digit>
+Read: 2, Top: <digit>
+Stack: end <stat-list'> ; <expr> = <identifier'> 2
+Read: 2, Top: 2
+Matched terminal: 2
+Stack: end <stat-list'> ; <expr> = <identifier'>
+Read: a, Top: <identifier'>
+Stack: end <stat-list'> ; <expr> = <identifier'> <letter>
+Read: a, Top: <letter>
+Stack: end <stat-list'> ; <expr> = <identifier'> a
+Read: a, Top: a
+Matched terminal: a
+Stack: end <stat-list'> ; <expr> = <identifier'>
+Read: =, Top: <identifier'>
+Stack: end <stat-list'> ; <expr> =
+Read: =, Top: =
+Matched terminal: =
+Stack: end <stat-list'> ; <expr>
+Read: 1, Top: <expr>
+Stack: end <stat-list'> ; <expr'> <term>
+Read: 1, Top: <term>
+Stack: end <stat-list'> ; <expr'> <term'> <factor>
+Read: 1, Top: <factor>
+Stack: end <stat-list'> ; <expr'> <term'> <number>
+Read: 1, Top: <number>
+Stack: end <stat-list'> ; <expr'> <term'> <number'> <digit> <sign>
+Read: 1, Top: <sign>
+Stack: end <stat-list'> ; <expr'> <term'> <number'> <digit>
+Read: 1, Top: <digit>
+Stack: end <stat-list'> ; <expr'> <term'> <number'> 1
+Read: 1, Top: 1
+Matched terminal: 1
+Stack: end <stat-list'> ; <expr'> <term'> <number'>
+Read: 4, Top: <number'>
+Stack: end <stat-list'> ; <expr'> <term'> <number'> <digit>
+Read: 4, Top: <digit>
+Stack: end <stat-list'> ; <expr'> <term'> <number'> 4
+Read: 4, Top: 4
+Matched terminal: 4
+Stack: end <stat-list'> ; <expr'> <term'> <number'>
+Read: ;, Top: <number'>
+Stack: end <stat-list'> ; <expr'> <term'>
+Read: ;, Top: <term'>
+Stack: end <stat-list'> ; <expr'>
+Read: ;, Top: <expr'>
+Stack: end <stat-list'> ;
+Read: ;, Top: ;
+Matched terminal: ;
+Stack: end <stat-list'>
+Read: c, Top: <stat-list'>
+Stack: end <stat-list'> <stat>
+Read: c, Top: <stat>
+Stack: end <stat-list'> <assign>
+Read: c, Top: <assign>
+Stack: end <stat-list'> ; <expr> = <identifier>
+Read: c, Top: <identifier>
+Stack: end <stat-list'> ; <expr> = <identifier'> <letter>
+Read: c, Top: <letter>
+Stack: end <stat-list'> ; <expr> = <identifier'> c
+Read: c, Top: c
+Matched terminal: c
+Stack: end <stat-list'> ; <expr> = <identifier'>
+Read: =, Top: <identifier'>
+Stack: end <stat-list'> ; <expr> =
+Read: =, Top: =
+Matched terminal: =
+Stack: end <stat-list'> ; <expr>
+Read: 5, Top: <expr>
+Stack: end <stat-list'> ; <expr'> <term>
+Read: 5, Top: <term>
+Stack: end <stat-list'> ; <expr'> <term'> <factor>
+Read: 5, Top: <factor>
+Stack: end <stat-list'> ; <expr'> <term'> <number>
+Read: 5, Top: <number>
+Stack: end <stat-list'> ; <expr'> <term'> <number'> <digit> <sign>
+Read: 5, Top: <sign>
+Stack: end <stat-list'> ; <expr'> <term'> <number'> <digit>
+Read: 5, Top: <digit>
+Stack: end <stat-list'> ; <expr'> <term'> <number'> 5
+Read: 5, Top: 5
+Matched terminal: 5
+Stack: end <stat-list'> ; <expr'> <term'> <number'>
+Read: ;, Top: <number'>
+Stack: end <stat-list'> ; <expr'> <term'>
+Read: ;, Top: <term'>
+Stack: end <stat-list'> ; <expr'>
+Read: ;, Top: <expr'>
+Stack: end <stat-list'> ;
+Read: ;, Top: ;
+Matched terminal: ;
+Stack: end <stat-list'>
+Read: print, Top: <stat-list'>
+Stack: end <stat-list'> <stat>
+Read: print, Top: <stat>
+Stack: end <stat-list'> <write>
+Read: print, Top: <write>
+Stack: end <stat-list'> ) <write'> ( print
+Read: print, Top: print
+Matched terminal: print
+Stack: end <stat-list'> ) <write'> (
+Read: (, Top: (
+Matched terminal: (
+Stack: end <stat-list'> ) <write'>
+Read: c, Top: <write'>
+Stack: end <stat-list'> ) <identifier> <str>
+Read: c, Top: <str>
+Stack: end <stat-list'> ) <identifier>
+Read: c, Top: <identifier>
+Stack: end <stat-list'> ) <identifier'> <letter>
+Read: c, Top: <letter>
+Stack: end <stat-list'> ) <identifier'> c
+Read: c, Top: c
+Matched terminal: c
+Stack: end <stat-list'> ) <identifier'>
+Read: ), Top: <identifier'>
+Stack: end <stat-list'> )
+Read: ), Top: )
+Matched terminal: )
+Stack: end <stat-list'>
+Read: ;, Top: <stat-list'>
+Rejected
