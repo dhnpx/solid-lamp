@@ -365,7 +365,7 @@ unordered_map<string, unordered_map<string, string>> table = {
       {"9", "blank"},       {"+", "blank"},       {"-", "blank"},
       {"*", "blank"},       {"/", "blank"},       {"(", "blank"},
       {")", "blank"},       {"=", "blank"},       {":", "blank"},
-      {";", "blank"},       {",", "blank"},       {"\"", "\"value=\","},
+      {";", "blank"},       {",", "blank"},       {"\"", "\"value=\" ,"},
       {"$", "blank"}}},
     {"<assign>",
      {{"program", "blank"},
