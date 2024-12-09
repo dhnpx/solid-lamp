@@ -22,25 +22,102 @@ This project demonstrates the implementation of a basic compiler using C++ for a
 
 ---
 
-#### **Steps to Run**
-1. **Preprocessing the Input:**
-   - Compile and run `preprocessor.cpp` with `final.txt` as input.
-   - The preprocessed output is saved as `finalf24.txt`.
+### **How to Run the Compiler**
 
-2. **Parsing for Grammar Validation:**
-   - Compile and run `parse.cpp` with `finalf24.txt` as input.
-   - The parser checks the program against the grammar rules and displays:
-     - `Ready to compile` if no errors are found.
-     - Specific error messages if issues are detected (e.g., missing semicolons, undefined identifiers).
+Follow these steps to run the compiler project and test its functionality:
 
-3. **Transpilation to C++:**
-   - Compile and run `transpile.cpp` with `finalf24.txt` as input.
-   - The transpiler generates a C++ program and saves it as `finalf24.cpp`.
+---
 
-4. **Running the Generated Program:**
-   - Compile and run `finalf24.cpp` using a C++ compiler.
-   - Observe the program's output, which should display variable values and results of computations.
+#### **1. Preprocess the Input File**
+- **Purpose:** Clean the input file (`final.txt`) by removing comments, extra spaces, and blank lines to produce `finalf24.txt`.
+- **Steps:**
+  1. Compile `preprocessor.cpp`:
+     ```bash
+     g++ preprocessor.cpp -o preprocessor
+     ```
+  2. Run the preprocessor:
+     ```bash
+     ./preprocessor
+     ```
+  3. Output:
+     - The preprocessed file `finalf24.txt` will be generated in the current directory.
 
+---
+
+#### **2. Parse and Validate the Grammar**
+- **Purpose:** Validate the syntax of the preprocessed file (`finalf24.txt`) using a predictive parser and check for grammar errors.
+- **Steps:**
+  1. Compile `parse.cpp`:
+     ```bash
+     g++ parse.cpp -o parser
+     ```
+  2. Run the parser:
+     ```bash
+     ./parser
+     ```
+  3. Output:
+     - If the syntax is valid: `Ready to compile`.
+     - If errors are found: A detailed error message will be displayed.
+
+---
+
+#### **3. Transpile to C++**
+- **Purpose:** Convert the preprocessed program (`finalf24.txt`) into a valid C++ file (`finalf24.cpp`).
+- **Steps:**
+  1. Compile `transpile.cpp`:
+     ```bash
+     g++ transpile.cpp -o transpile
+     ```
+  2. Run the transpiler:
+     ```bash
+     ./transpile
+     ```
+  3. Output:
+     - A C++ source file `finalf24.cpp` will be generated in the current directory.
+
+---
+
+#### **4. Run the Generated C++ Code**
+- **Purpose:** Execute the transpiled C++ program to observe the output.
+- **Steps:**
+  1. Compile the C++ file:
+     ```bash
+     g++ finalf24.cpp -o finalf24
+     ```
+  2. Run the compiled program:
+     ```bash
+     ./finalf24
+     ```
+  3. Output:
+     - The program will display variable values and computed results in the terminal.
+     - Example:
+       ```plaintext
+       5
+       value=72
+       ```
+
+---
+
+#### **Summary of Commands**
+```bash
+# Step 1: Preprocess
+g++ preprocessor.cpp -o preprocessor
+./preprocessor
+
+# Step 2: Parse
+g++ parse.cpp -o parser
+./parser
+
+# Step 3: Transpile
+g++ transpile.cpp -o transpile
+./transpile
+
+# Step 4: Compile and Run the Transpiled Code
+g++ finalf24.cpp -o finalf24
+./finalf24
+```
+
+This process ensures the program moves through all stages of compilation, validation, and execution.
 ---
 
 #### **Features**
