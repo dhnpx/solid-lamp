@@ -4,9 +4,10 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#define printStack(s) \
-    cout << "Stack: "; \
-    for (auto& x : s) cout << x << " "; \
+#define printStack(s)                                                          \
+    cout << "Stack: ";                                                         \
+    for (auto &x : s)                                                          \
+        cout << x << " ";                                                      \
     cout << "\n";
 
 using namespace std;
@@ -119,23 +120,41 @@ unordered_map<string, unordered_map<string, string>> table = {
       {",", "lambda"},
       {"\"", "blank"},
       {"$", "blank"}}},
-    {"<dec-list>", {{"program", "blank"},     {"var", "blank"},
-                    {"begin", "blank"},       {"end", "blank"},
-                    {"integer", "blank"},     {"print", "blank"},
-                    {"a", "<dec> : <type> ;"}, {"b", "<dec> : <type> ;"},
-                    {"c", "<dec> : <type> ;"}, {"d", "<dec> : <type> ;"},
-                    {"l", "<dec> : <type> ;"}, {"f", "<dec> : <type> ;"},
-                    {"0", "blank"},           {"1", "blank"},
-                    {"2", "blank"},           {"3", "blank"},
-                    {"4", "blank"},           {"5", "blank"},
-                    {"6", "blank"},           {"7", "blank"},
-                    {"8", "blank"},           {"9", "blank"},
-                    {"+", "blank"},           {"-", "blank"},
-                    {"*", "blank"},           {"/", "blank"},
-                    {"(", "blank"},           {")", "blank"},
-                    {"=", "blank"},           {":", "blank"},
-                    {";", "blank"},           {",", "blank"},
-                    {"\"", "blank"},          {"$", "blank"}}},
+    {"<dec-list>",
+     {{"program", "blank"},
+      {"var", "blank"},
+      {"begin", "blank"},
+      {"end", "blank"},
+      {"integer", "blank"},
+      {"print", "blank"},
+      {"a", "<dec> : <type> ;"},
+      {"b", "<dec> : <type> ;"},
+      {"c", "<dec> : <type> ;"},
+      {"d", "<dec> : <type> ;"},
+      {"l", "<dec> : <type> ;"},
+      {"f", "<dec> : <type> ;"},
+      {"0", "blank"},
+      {"1", "blank"},
+      {"2", "blank"},
+      {"3", "blank"},
+      {"4", "blank"},
+      {"5", "blank"},
+      {"6", "blank"},
+      {"7", "blank"},
+      {"8", "blank"},
+      {"9", "blank"},
+      {"+", "blank"},
+      {"-", "blank"},
+      {"*", "blank"},
+      {"/", "blank"},
+      {"(", "blank"},
+      {")", "blank"},
+      {"=", "blank"},
+      {":", "blank"},
+      {";", "blank"},
+      {",", "blank"},
+      {"\"", "blank"},
+      {"$", "blank"}}},
     {"<dec>",
      {{"program", "blank"},
       {"var", "blank"},
@@ -670,7 +689,7 @@ bool isIdentifier(string &token) {
 
 int main() {
 
-  ifstream file;
+    ifstream file;
     file.open("finalf24.txt");
     if (file.fail()) {
         cerr << "Error opening input file." << endl;
@@ -693,9 +712,9 @@ int main() {
             if (isIdentifier(read)) {
                 i++;
             } else {
-                // for debugging only i will delete this later 
-                cerr << "Syntax error: Invalid identifier '" << read << "'" << endl;
-                return 1;
+                // for debugging only i will delete this later
+                cerr << "Syntax error: Invalid identifier '" << read << "'" <<
+        endl; return 1;
             }
             continue;
         }
@@ -704,7 +723,7 @@ int main() {
             if (table[top].find(read) != table[top].end()) {
                 string production = table[top][read];
 
-                // for debugging only i will delete this later 
+                // for debugging only i will delete this later
                 cout << "Expanding production: " << production << endl;
 
                 if (production == "lambda") {
@@ -723,6 +742,17 @@ int main() {
             }
         } */
 
+        if (top == "end" && read == "end") {
+            cout << "Input is ACCEPTED" << endl;
+            return 0;
+        }
+
+        if (top == read) {
+            // for debugging only i will delete this later
+            cout << "Matched terminal: " << read << endl;
+            i++;
+            continue;
+        }
         if (reservedWords.find(read) != reservedWords.end()) {
             string prod = table[top][read];
             if (prod == "lambda") {
@@ -735,36 +765,28 @@ int main() {
         } else {
             vector<string> token_split;
             for (int j = 0; j < read.size(); j++) {
-                token_split.push_back(read[j]);
+                string tmp;
+                tmp.push_back(read[j]);
+                token_split.push_back(tmp);
             }
-            for (int j = 0; j < token_split.size(); j--) {
+            for (int j = 0; j < token_split.size(); j++) {
                 string prod = table[top][token_split[j]];
+                cout << "Prod: " << prod << " ";
+                cout << "Top: " << top << " Token: " << token_split[j] << endl;
                 if (prod == "lambda") {
                     continue;
                 }
+                if (prod == "blank") {
+                    cout << "Rejected" << endl;
+                    exit(1);
+                }
                 vector<string> prod_split = split(prod, ' ');
-                for (int j = prod_split.size() - 1; j >= 0; j++) {
-                    stack.push_back(prod_split[j]);
+                for (int k = prod_split.size() - 1; k >= 0; k--) {
+                    stack.push_back(prod_split[k]);
                 }
             }
         }
-
-        if (top == "end" && read == "end") {
-            cout << "Input is ACCEPTED" << endl;
-        }
-        
-        if (top == read) 
-        {
-            // for debugging only i will delete this later 
-            cout << "Matched terminal: " << read << endl;
-            i++;  
-        }
-        else {
-            cerr << "Syntax error: Expected '" << top << "', found '" << read << "'" << endl;
-            return 1;
-        }
     }
-
 
     if (stack.empty() && i == tokens.size()) {
         cout << "Input is ACCEPTED" << endl;

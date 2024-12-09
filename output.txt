@@ -1,0 +1,10 @@
+Read: program, Top: <prog>
+Stack: 
+Read: program, Top: program
+Stack: end <stat-list> begin <dec-list> var ; <identifier> 
+Matched terminal: program
+Read: f2024, Top: <identifier>
+Stack: end <stat-list> begin <dec-list> var ; 
+Prod: <letter> <identifier'> Top: <identifier> Token: f
+Prod: blank Top: <identifier> Token: 2
+Rejected
