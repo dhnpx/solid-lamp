@@ -652,7 +652,17 @@ vector<string> tokenize(ifstream &file) {
     string token;
 
     while (file >> token) {
-        tokens.push_back(token);
+        if (reservedWords.find(token) != reservedWords.end()) {
+            tokens.push_back(token);
+        } else {
+
+            for (auto c : token) {
+                string tmp;
+                tmp += c;
+                token.push_back(tmp);
+            }
+        }
+
     }
 
     return tokens;
@@ -753,50 +763,24 @@ int main() {
             i++;
             continue;
         }
-        if (reservedWords.find(read) != reservedWords.end()) {
+        
             string prod = table[top][read];
             if (prod == "lambda") {
                 continue;
             }
-            vector<string> prod_split = split(prod, ' ');
-            for (int j = prod_split.size() - 1; j >= 0; j--) {
-                stack.push_back(prod_split[j]);
-            }
-        } else {
-            vector<string> token_split;
-            for (int j = 0; j < read.size(); j++) {
-                string tmp;
-                tmp.push_back(read[j]);
-                token_split.push_back(tmp);
-            }
-            bool first = true;
-            for (int j = 0; j < token_split.size();) {
-                if (!first) {
-                    top = stack.back();
-                    stack.pop_back();
-                    first = false;
-                }
-                string prod = table[top][token_split[j]];
-                cout << "Prod: " << prod << " ";
-                cout << "Top: " << top << " Token: " << token_split[j] << endl;
-                if (top == token_split[j]) {
-                    j++;
-                    continue;
-                }
-                if (prod == "lambda") {
+            if (prod == "lambda") {
                     continue;
                 }
                 if (prod == "blank") {
                     cout << "Rejected" << endl;
                     exit(1);
                 }
-                vector<string> prod_split = split(prod, ' ');
-                for (int k = prod_split.size() - 1; k >= 0; k--) {
-                    stack.push_back(prod_split[k]);
-                }
+            vector<string> prod_split = split(prod, ' ');
+            for (int j = prod_split.size() - 1; j >= 0; j--) {
+                stack.push_back(prod_split[j]);
             }
         }
-    }
+    
 
     if (stack.empty() && i == tokens.size()) {
         cout << "Input is ACCEPTED" << endl;
