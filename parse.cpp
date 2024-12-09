@@ -645,7 +645,7 @@ unordered_map<string, unordered_map<string, string>> table = {
 unordered_set<string> reservedWords = {"program", "var",     "begin",
                                        "end",     "integer", "print"};
 unordered_set<string> string_pool = {
-    "value="
+    "\"value=\""
 };
 
 unordered_set<char> identifiers = {';', ',', ':', '.', '(', ')'};
@@ -656,8 +656,12 @@ vector<string> tokenize(ifstream &file) {
     string token;
 
     while (file >> token) {
-        if (reservedWords.find(token) != reservedWords.end() || string_pool.find(token) != string_pool.end()) {
+        if (reservedWords.find(token) != reservedWords.end()) {
             tokens.push_back(token);
+        } else if (string_pool.find(token) != string_pool.end()) {
+            tokens.push_back("\"");
+            tokens.push_back(token.substr(1,token.size() - 1));
+            tokens.push_back("\"");
         } else {
 
             for (auto c : token) {
