@@ -692,7 +692,6 @@ vector<string> split(string s, char delim) {
     return split_str;
 };
 
-
 int main() {
 
     ifstream file;
@@ -736,7 +735,7 @@ int main() {
         }
     
         string prod = table[top][read];
-        if (prod == table.end()) {
+        if (prod == "") {
             cout << "missing: " << top << " at line no. " << line_no << endl;
         }
         
