@@ -660,7 +660,7 @@ vector<string> tokenize(ifstream &file) {
             tokens.push_back(token);
         } else if (string_pool.find(token) != string_pool.end()) {
             tokens.push_back("\"");
-            tokens.push_back(token.substr(1,token.size() - 1));
+            tokens.push_back(token.substr(1,token.size() - 2));
             tokens.push_back("\"");
         } else {
 
