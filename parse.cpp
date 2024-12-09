@@ -737,7 +737,7 @@ int main() {
     
         string prod = table[top][read];
         if (prod == table.end()) {
-            "missing: " << top << " at line no. " << line_no << endl;
+            cout << "missing: " << top << " at line no. " << line_no << endl;
         }
         
         if (prod == "lambda") {
