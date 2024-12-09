@@ -477,22 +477,50 @@ Stack: end <stat-list'> ; ) <write'>
 Read: ", Top: <write'>
 Stack: end <stat-list'> ; ) <identifier> <str> 
 Read: ", Top: <str>
-Stack: end <stat-list'> ; ) <identifier>  , " value= " 
+Stack: end <stat-list'> ; ) <identifier> , " value= " 
 Read: ", Top: "
 Matched terminal: "
-Stack: end <stat-list'> ; ) <identifier>  , " value= 
+Stack: end <stat-list'> ; ) <identifier> , " value= 
 Read: value=, Top: value=
 Matched terminal: value=
-Stack: end <stat-list'> ; ) <identifier>  , " 
+Stack: end <stat-list'> ; ) <identifier> , " 
 Read: ", Top: "
 Matched terminal: "
-Stack: end <stat-list'> ; ) <identifier>  , 
+Stack: end <stat-list'> ; ) <identifier> , 
 Read: ,, Top: ,
 Matched terminal: ,
-Stack: end <stat-list'> ; ) <identifier>  
-Read: b, Top: 
-Stack: end <stat-list'> ; ) <identifier>  
-Read: b, Top: 
-Stack: end <stat-list'> ; ) <identifier>  
-Read: b, Top: 
+Stack: end <stat-list'> ; ) <identifier> 
+Read: b, Top: <identifier>
+Stack: end <stat-list'> ; ) <identifier'> <letter> 
+Read: b, Top: <letter>
+Stack: end <stat-list'> ; ) <identifier'> b 
+Read: b, Top: b
+Matched terminal: b
+Stack: end <stat-list'> ; ) <identifier'> 
+Read: b, Top: <identifier'>
+Stack: end <stat-list'> ; ) <identifier'> <letter> 
+Read: b, Top: <letter>
+Stack: end <stat-list'> ; ) <identifier'> b 
+Read: b, Top: b
+Matched terminal: b
+Stack: end <stat-list'> ; ) <identifier'> 
+Read: a, Top: <identifier'>
+Stack: end <stat-list'> ; ) <identifier'> <letter> 
+Read: a, Top: <letter>
+Stack: end <stat-list'> ; ) <identifier'> a 
+Read: a, Top: a
+Matched terminal: a
+Stack: end <stat-list'> ; ) <identifier'> 
+Read: ), Top: <identifier'>
+Stack: end <stat-list'> ; ) 
+Read: ), Top: )
+Matched terminal: )
+Stack: end <stat-list'> ; 
+Read: ;, Top: ;
+Matched terminal: ;
+Stack: end <stat-list'> 
+Read: end, Top: <stat-list'>
+Stack: end 
+Read: end, Top: end
+Input is ACCEPTED
 

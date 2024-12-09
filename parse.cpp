@@ -691,19 +691,7 @@ vector<string> split(string s, char delim) {
     split_str.push_back(tmp);
     return split_str;
 };
-bool isIdentifier(string &token) {
 
-    if (!isalpha(token[0]))
-        return false;
-
-    // Remaining characters must be letters or digits
-    for (int i = 1; i < token.length(); i++) {
-        if (!isalnum(token[i]))
-            return false;
-    }
-
-    return true;
-}
 
 int main() {
 
@@ -716,9 +704,14 @@ int main() {
 
     vector<string> tokens = tokenize(file);
     vector<string> stack = {"<prog>"};
+    
+    vector<string> stack_prev;
+    string read_prev;
+    string top_prev;
+    
+    int line_no = 1;
+
     int i = 0;
-
-
     while (!stack.empty() && i < tokens.size()) {
         printStack(stack);
         string read = tokens[i];
@@ -727,46 +720,15 @@ int main() {
 
         cout << "Read: " << read << ", Top: " << top << endl;
 
-        /* if (top == "<identifier>") {
-            if (isIdentifier(read)) {
-                i++;
-            } else {
-                // for debugging only i will delete this later
-                cerr << "Syntax error: Invalid identifier '" << read << "'" <<
-        endl; return 1;
-            }
-            continue;
-        }
-
-        if (table.find(top) != table.end()) {
-            if (table[top].find(read) != table[top].end()) {
-                string production = table[top][read];
-
-                // for debugging only i will delete this later
-                cout << "Expanding production: " << production << endl;
-
-                if (production == "lambda") {
-                    continue;
-                }
-
-                vector<string> prodTokens = split(production, ' ');
-                for (auto g = prodTokens.rbegin(); g != prodTokens.rend();++g) {
-                    stack.push_back(*g);
-                }
-            } else {
-
-                cerr << "Syntax error: Unexpected token '" << read
-                     << "' for non-terminal '" << top << "'" << endl;
-                return 1;
-            }
-        } */
-
         if (top == "end" && read == "end") {
-            cout << "Input is ACCEPTED" << endl;
+            cout << "Ready to compile" << endl;
             return 0;
         }
 
         if (top == read) {
+            if (top == ";") {
+                line_no++;
+            }
             // for debugging only i will delete this later
             cout << "Matched terminal: " << read << endl;
             i++;
@@ -774,6 +736,9 @@ int main() {
         }
     
         string prod = table[top][read];
+        if (prod == table.end()) {
+            "missing: " << top << " at line no. " << line_no << endl;
+        }
         
         if (prod == "lambda") {
             continue;
@@ -787,12 +752,6 @@ int main() {
             stack.push_back(prod_split[j]);
             
         }
-    }
-
-    if (stack.empty() && i == tokens.size()) {
-        cout << "Input is ACCEPTED" << endl;
-    } else {
-        cout << "Input is REJECTED: stack or tokens remaining" << endl;
     }
 
     return 0;
