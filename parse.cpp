@@ -689,7 +689,7 @@ int main() {
         cout << "Read: " << read << ", Top: " << top << endl;
         printStack(stack);
 
-        if (top == "<identifier>") {
+        /* if (top == "<identifier>") {
             if (isIdentifier(read)) {
                 i++;
             } else {
@@ -721,9 +721,35 @@ int main() {
                      << "' for non-terminal '" << top << "'" << endl;
                 return 1;
             }
-        } 
+        } */
+
+        if (reservedWords.find(read) != reservedWords.end()) {
+            string prod = table[top][read];
+            if (prod == "lambda") {
+                continue;
+            }
+            vector<string> prod_split = split(prod, " ");
+            for (int j = prod_split.size() - 1; j >= 0; j++) {
+                stack.push_back(prod_split[j]);
+            }
+        } else {
+            vector<string> token_split;
+            for (int j = 0; j < read.size(); j++) {
+                token_split.push_back(read[i]);
+            }
+            for (int j = 0; j < token_split.size(); j++) {
+                string prod = table[top][token_split[j]];
+                if (prod == "lambda") {
+                    continue;
+                }
+                vector<string> prod_split = split(prod, " ");
+                for (int j = prod_split.size() - 1; j >= 0; j++) {
+                    stack.push_back(prod_split[j]);
+                }
+            }
+        }
         
-        else if (top == read) 
+        if (top == read) 
         {
             // for debugging only i will delete this later 
             cout << "Matched terminal: " << read << endl;
@@ -735,7 +761,9 @@ int main() {
         }
     }
 
-
+    if (top == "end" && read == "end") {
+        cout << "Input is ACCEPTED" << endl;
+    }
     if (stack.empty() && i == tokens.size()) {
         cout << "Input is ACCEPTED" << endl;
     } else {
